@@ -1,0 +1,10 @@
+<resources>
+    <string name="app_name">Dots and Boxes</string>
+    <string name="grd1">4x3</string>
+    <string name="grd2">5x4</string>
+    <string name="grd3">7x6</string>
+    <string name="txt1">Select a Mode</string>
+    <string name="txt2">Select Grid size</string>
+    <string name="nop">Enter no.of Players</string>
+    <string name="dab">Dots &amp; Boxes</string>
+</resources>
