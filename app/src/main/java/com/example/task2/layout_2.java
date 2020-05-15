@@ -75,8 +75,7 @@ public class layout_2 extends View {
             canvas.drawText("Bot", width * 0.64f, height * 0.17f, rPaints[1]);
             for (int i = 0; i < nop; i++)
                 canvas.drawText(String.valueOf(scores[i]), (float) (width * (0.27 + 0.42 * i)), height * 0.23f, blackScore);
-        }
-        else if (nop == 2) {
+        } else if (nop == 2) {
             canvas.drawText("1v1", width * 0.44f, height * 0.08f, blackText);
             canvas.drawText("Player 1", width * 0.17f, height * 0.17f, rPaints[0]);
             canvas.drawText("Player 2", width * 0.6f, height * 0.17f, rPaints[1]);
@@ -89,7 +88,7 @@ public class layout_2 extends View {
             canvas.drawText("Player 3", width * 0.7f, height * 0.17f, rPaints[2]);
             for (int i = 0; i < nop; i++)
                 canvas.drawText(String.valueOf(scores[i]), (float) (width * (0.19 + 0.32 * i)), height * 0.22f, blackScore);
-        } else{
+        } else {
             canvas.drawText("Multiplayer", width * 0.36f, height * 0.068f, blackText);
             canvas.drawText("Player 1", width * 0.17f, height * 0.151f, rPaints[0]);
             canvas.drawText("Player 2", width * 0.6f, height * 0.151f, rPaints[1]);
@@ -99,7 +98,7 @@ public class layout_2 extends View {
                 canvas.drawText(String.valueOf(scores[i]), (float) (width * (0.27 + (0.42 * i))),
                         height * 0.196f, blackScore);
                 if (i >= 2)
-                    canvas.drawText(String.valueOf(scores[i]), (float) (width * (0.27 + (0.42 * (i-2)))),
+                    canvas.drawText(String.valueOf(scores[i]), (float) (width * (0.27 + (0.42 * (i - 2)))),
                             height * 0.292f, blackScore);
             }
         }
@@ -149,9 +148,9 @@ public class layout_2 extends View {
         Point p, q;
         Path path = new Path();
         for (int i = 1; i <= column + 1; i++) {
-            if (x >= (width * i) + radius + 20 && x <= (width * (i + 1)) - radius - 20) {
+            if (x >= (width * i) + radius + 10 && x <= (width * (i + 1)) - radius - 10) {
                 for (int j = 1; j <= row - 1; j++) {
-                    if (y >= (start + (height * j) - radius - 20) && y <= (start + (height * j) + radius + 20)) {
+                    if (y >= (start + (height * j) - radius - 10) && y <= (start + (height * j) + radius + 10)) {
                         path.moveTo(width * i, start + (height * j));
                         path.lineTo(width * (i + 1), start + (height * j));
                         p = new Point((int) width * i, (int) (start + (height * j)));
@@ -162,17 +161,16 @@ public class layout_2 extends View {
                             endP.add(q);
                             checkRectangle(i, j, 'h');
                             return true;
-                        } else {
+                        } else
                             return false;
-                        }
                     }
                 }
             }
         }
         for (int j = 1; j <= row - 2; j++) {
-            if (y >= start + (height * j) + radius + 20 && y <= start + (height * (j + 1)) - radius - 20) {
+            if (y >= start + (height * j) + radius + 10 && y <= start + (height * (j + 1)) - radius - 10) {
                 for (int i = 1; i <= column + 2; i++) {
-                    if (x >= (width * i - radius - 20) && x <= (width * i + radius + 20)) {
+                    if (x >= (width * i - radius - 10) && x <= (width * i + radius + 10)) {
                         path.moveTo(width * i, start + (height * j));
                         path.lineTo(width * i, start + (height * (j + 1)));
                         p = new Point((int) width * i, (int) (start + (height * j)));
@@ -183,9 +181,8 @@ public class layout_2 extends View {
                             endP.add(q);
                             checkRectangle(i, j, 'v');
                             return true;
-                        } else {
+                        } else
                             return false;
-                        }
                     }
                 }
             }
@@ -195,7 +192,13 @@ public class layout_2 extends View {
 
     public boolean checkLine(Point p, Point q) {
         int i = startP.indexOf(p);
-        return i < 0 || !endP.get(i).equals(q.x, q.y);
+        int j = startP.lastIndexOf(p);
+        if (i >= 0 && endP.get(i).equals(q))
+            return false;
+        else if (j >= 0 && endP.get(j).equals(q))
+            return false;
+        else
+            return true;
     }
 
     public void checkRectangle(int i, int j, char s) {
